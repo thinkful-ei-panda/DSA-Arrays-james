@@ -10,16 +10,18 @@ Input: www.thinkful.com /tauh ida parv een
 Output: www.thinkful.com%20/tauh%20ida%20parv%20een */
 
 function stringURL(string) {
-  console.log(string.replace(/ /g, '%20'));
+  let pass = 0;
+  let final = string.replace(/ /g, '%20');
+  pass++;
+  console.log({'passes': pass, 'result': final});
+ 
 }
 
 stringURL('tauhida parveen'); 
-//expected: 'tauhida%20parveen'
-//results:  'tauhida%20parveen'
+//{ passes: 1, result: 'tauhida%20parveen' }
 
 stringURL('www.thinkful.com /tauh ida parv een'); 
-//expected: 'www.thinkful.com%20/tauh%20ida%20parv%20een'
-//results:  'www.thinkful.com%20/tauh%20ida%20parv%20een'
+//{ passes: 1, result: 'www.thinkful.com%20/tauh%20ida%20parv%20een' }
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -37,10 +39,10 @@ function removeLess5(numbers) {
     }
   });
 
-  console.log({ array: fiveOrMore, passes: pass });
+  console.log({ 'result': fiveOrMore, 'passes': pass });
 }
 
-removeLess5([1,10,3,22,5]); //{ array: [ 10, 22, 5 ], passes: 3 }
+removeLess5([1,10,3,22,5]); //{ result: [ 10, 22, 5 ], passes: 3 }
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -61,8 +63,123 @@ function maxSum(integers) {
     currMax = Math.max(0, currMax + integers[i]);
     prevMax = Math.max(currMax, prevMax);
   }
-  console.log({passes: pass, MaxSum: prevMax});
+  console.log({'passes': pass, 'result': prevMax});
 }
   
-maxSum([4, 6, -3, 5, -2, 1]); // { passes: 6, MaxSum: 12 }
+maxSum([4, 6, -3, 5, -2, 1]); //{ passes: 6, result: 12 }
+
+
+////////////////////////////////////////////////////////////////////////
+/* 8. Merge arrays
+Imagine you have 2 arrays which have already been sorted. Write an algorithm to merge the 2 arrays into a single array, which should also be sorted.
+
+Input:[1, 3, 6, 8, 11] and [2, 3, 5, 8, 9, 10]
+Output:[1, 2, 3, 3, 5, 6, 8, 8, 9, 10, 11] */
+
+
+function mergeAndSort(arr1, arr2) {
+
+  const finalArr = Array.from(arr1);
+  let pass = 0;
+
+  arr2.forEach((num) => {
+    let i = 0;
+    while(i < finalArr.length) {
+      if(num <= finalArr[i]) {
+        finalArr.splice(i, 0, num);
+        break;
+      }
+      i++;
+      pass++;
+    }
+  });
+  console.log({ 'result': finalArr, 'passes': pass });
+}
+
+mergeAndSort([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]); 
+//{result: [1, 2, 3, 3, 5, 6, 8, 8, 9, 10, 11], passes: 30}
+
+
+
+////////////////////////////////////////////////////////////////////////
+/* 9. Remove characters
+Write an algorithm that deletes given characters from a string. For example, given a string of "Battle of the Vowels: Hawaii vs. Grozny" and the characters to be removed are "aeiou", the algorithm should transform the original string to "Bttl f th Vwls: Hw vs. Grzny". Do not use Javascript's filter, split, or join methods.
+
+Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
+Output: 'Bttl f th Vwls: Hw vs. Grzny' */
+
+function removeChar(string, char) {
+
+  let final = ' ';
+  let prev = 0;
+  let pass = 0;
+
+  for (let i = 0; i <= string.length; i++) {
+    if (char.includes(string[i]) || i === string.length) {
+      final += string.slice(prev, i);
+      prev = i + 1;
+    }
+    pass++;
+  }
+
+  console.log({'passes': pass, 'result': final});
+}
+
+removeChar('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou');
+//{ passes: 40, result: ' Bttl f th Vwls: Hw vs. Grzny' }
+
+
+////////////////////////////////////////////////////////////////////////
+/* 10. Products
+Given an array of numbers, write an algorithm that outputs an array where each index is the product of all the numbers in the input array except for the number at each current index. See the following example input and output.
+
+Input:[1, 3, 9, 4]
+Output:[108, 36, 12, 27] */
+
+function productOfArrIndex(numbers){
+  let newArr = [];
+  let pass = 0;
+
+  for(let num of numbers){
+    let product = 1;
+    numbers.filter(x => x !== num).forEach(x => product *= x);
+    newArr.push(product);
+    pass++;
+  }
+  console.log({'result': newArr, 'passes': pass});
+}
+
+productOfArrIndex([1, 3, 9, 4]); 
+//{ result: [ 108, 36, 12, 27 ], passes: 4 }
+
+
+////////////////////////////////////////////////////////////////////////
+/* 11. 2D array
+Write an algorithm which searches through a 2D array, and whenever it finds a 0 should set the entire row and column to 0.
+
+Input:
+[[1,0,1,1,0],
+[0,1,1,1,0],
+[1,1,1,1,1],
+[1,0,1,1,1],
+[1,1,1,1,1]];
+Output:
+[[0,0,0,0,0],
+[0,0,0,0,0],
+[0,0,1,1,0],
+[0,0,0,0,0],
+[0,0,1,1,0]]; */
+
+
+
+////////////////////////////////////////////////////////////////////////
+/* 12. String rotation
+Given 2 strings, str1 and str2, write a program that checks if str2 is a rotation of str1.
+
+Input: amazon, azonma
+Output: False
+
+Input: amazon, azonam
+Output: true
+*/
 
