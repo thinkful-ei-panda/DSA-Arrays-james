@@ -13,11 +13,11 @@ function stringURL(string) {
   console.log(string.replace(/ /g, '%20'));
 }
 
-//stringURL('tauhida parveen'); 
+stringURL('tauhida parveen'); 
 //expected: 'tauhida%20parveen'
 //results:  'tauhida%20parveen'
 
-//stringURL('www.thinkful.com /tauh ida parv een'); 
+stringURL('www.thinkful.com /tauh ida parv een'); 
 //expected: 'www.thinkful.com%20/tauh%20ida%20parv%20een'
 //results:  'www.thinkful.com%20/tauh%20ida%20parv%20een'
 
@@ -40,7 +40,7 @@ function removeLess5(numbers) {
   console.log({ array: fiveOrMore, passes: pass });
 }
 
-//removeLess5([1,10,3,22,5]); //{ array: [ 10, 22, 5 ], passes: 3 }
+removeLess5([1,10,3,22,5]); //{ array: [ 10, 22, 5 ], passes: 3 }
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -64,5 +64,5 @@ function maxSum(integers) {
   console.log({passes: pass, MaxSum: prevMax});
 }
   
-//maxSum([4, 6, -3, 5, -2, 1]); // { passes: 6, MaxSum: 12 }
+maxSum([4, 6, -3, 5, -2, 1]); // { passes: 6, MaxSum: 12 }
 
