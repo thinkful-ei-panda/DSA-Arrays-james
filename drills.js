@@ -13,8 +13,8 @@ function stringURL(string) {
   let pass = 0;
   let final = string.replace(/ /g, '%20');
   pass++;
+
   console.log({'passes': pass, 'result': final});
- 
 }
 
 stringURL('tauhida parveen'); 
@@ -53,7 +53,6 @@ Input: [4, 6, -3, 5, -2, 1]
 Output: 12 */
 
 function maxSum(integers) {
-
   let currMax = 0;
   let prevMax = 0;
   let pass = 0;
@@ -63,6 +62,7 @@ function maxSum(integers) {
     currMax = Math.max(0, currMax + integers[i]);
     prevMax = Math.max(currMax, prevMax);
   }
+
   console.log({'passes': pass, 'result': prevMax});
 }
   
@@ -78,7 +78,6 @@ Output:[1, 2, 3, 3, 5, 6, 8, 8, 9, 10, 11] */
 
 
 function mergeAndSort(arr1, arr2) {
-
   const finalArr = Array.from(arr1);
   let pass = 0;
 
@@ -93,6 +92,7 @@ function mergeAndSort(arr1, arr2) {
       pass++;
     }
   });
+
   console.log({ 'result': finalArr, 'passes': pass });
 }
 
@@ -109,7 +109,6 @@ Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
 Output: 'Bttl f th Vwls: Hw vs. Grzny' */
 
 function removeChar(string, char) {
-
   let final = ' ';
   let prev = 0;
   let pass = 0;
@@ -146,6 +145,7 @@ function productOfArrIndex(numbers){
     newArr.push(product);
     pass++;
   }
+  
   console.log({'result': newArr, 'passes': pass});
 }
 
